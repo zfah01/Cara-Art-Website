@@ -20,7 +20,30 @@
         background: #D3D3D3;
     }
     .art-pieces{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         padding-bottom: 3%;
+    }
+    .submit{
+        position: relative;
+        background: #000;
+        border: 0;
+        padding: 14px 42px;
+        border-radius: 3px;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #fff;
+        margin-right: 2%;
+        letter-spacing: .2em;
+        transition: all .2s ease;
+    }
+    .info{
+        font-family: 'ABeeZee', sans-serif;
+    }
+    #Msg{
+        color: red;
     }
 </style>
 <?php
@@ -59,17 +82,17 @@ $availability= null;
                   <img class="center-block art-pieces" src="data:image/jpeg;base64,' . base64_encode($row['art-piece']) . ' "height=100%" width="100%"/>
                 </div>
                 <div class="col-sm-6" id = "description">
-                 <h3>  ' . $name . ' </h3>
-                 <h3> Completion date: ' . $row['date of completion'] . ' </h3>
-                 <h3> Size: ' . $row['width (mm)'] . ' x ' . $row['height (mm)'] . ' mm</h3>
-                 <h3> Price: £ ' . $row['price (£)'] . '  </h3>
-                 <p> Description: ' . $row['description'] . ' </p>
+                 <h3 class="info">  ' . $name . ' </h3>
+                 <h3 class="info"> Completion date: ' . $row['date of completion'] . ' </h3>
+                 <h3 class="info"> Size: ' . $row['width (mm)'] . ' x ' . $row['height (mm)'] . ' mm</h3>
+                 <h3 class="info"> Price: £ ' . $row['price (£)'] . '  </h3>
+                 <p class="info"> Description: ' . $row['description'] . ' </p>
                  <div class="btn-toolbar mb-3" role="toolbar" aria-label="Back">
-                  <button onclick="history.go(-1);" id="submit" >Back </button>';
+                  <button onclick="history.go(-1);" class="submit" id="submit" >Back </button>';
 
         if($availability == true){
             echo ' <form method="post" action="booking.php" >
-                 <input type="submit" name="action" value="Book" id="submit" />
+                 <input type="submit" name="action" value="Book" class="submit "id="submit" />
                   <input type="hidden" name="id" value= "' . $row['id'] . '" />
                   <input type="hidden" name="name" value="' . $row['name'] . '" />
                </form>
@@ -85,7 +108,7 @@ $availability= null;
                   <input type="hidden" name="name" value="' . $name . '" />
                </form>
                </div>
-                <h4> Sorry, this painting is unavailable </h4>
+                <h4 id="Msg" class="info"> Sorry, this painting is unavailable </h4>
               </div>
               </div>
             </div>

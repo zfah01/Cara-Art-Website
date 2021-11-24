@@ -5,6 +5,7 @@
     <title>CaraArt | Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
     <link class="img-responsive logo img-circle margin" rel="icon" href="Resources/logo.jpg">
     <style>
         html body{
@@ -30,6 +31,10 @@
             text-align: center;
             font-family: Garamond, serif;
             padding-bottom: 3%;
+        }
+
+        #title{
+            font-family: 'ABeeZee', sans-serif;
         }
 
 
@@ -99,7 +104,9 @@ include "./navigationBar.html";
         <div class="container py-5 h-100">
             <div class="row d-flex align-items-center justify-content-center h-100">
                 <div class="col-md-8 col-lg-7 col-xl-6">
-                    <img class="logoImg embed-responsive-item"  src="Resources/logo.jpg" alt="logo">
+                    <div class="img-responsive">
+                    <img class="logoImg"  src="Resources/logo.jpg" alt="logo">
+                    </div>
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
                     <form name="passForm" action="admin.php" method="post" onsubmit="return checkForm();">

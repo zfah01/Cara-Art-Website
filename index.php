@@ -23,6 +23,7 @@
         .margin {
             margin-bottom: 3%;
             font-family: 'ABeeZee', sans-serif;
+            font-weight: bold;
         }
         .bg {
             background-color:#D3D3D3;
@@ -109,7 +110,7 @@ include "./navigationBar.html";
     </a>
 </div>
 <div class="container-fluid bg text-center">
-    <h3>Come and visit us!</h3>
+    <h3 class="margin">Come and visit us!</h3>
     <h5 class="headings">Come and have a look at our art gallery and have a sneak peek of our new Winter 2021 collection</a></h5>
     <h5 class="headings">Arrange a visit by visiting the <a href="trackAndTraceBooking.php">track and trace page</a></h5>
 </div>

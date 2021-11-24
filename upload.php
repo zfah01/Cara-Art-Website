@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>CaraArt | Upload</title>
     <link class="img-responsive logo img-circle margin" rel="icon" href="Resources/logo.jpg">
+    <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <style>
@@ -11,33 +12,17 @@
         background: #D3D3D3;
     }
 
-    .form {
-        background: #ffffff;
-        margin-top: 10%;
-        margin-bottom: 5%;
-        border-style: solid;
-        border-color:#d4af37 ;
-        border-width: thick;
-    }
 
-    .logoImg{
-        padding-top: 7%;
-    }
-
-    .logoImg img{
-        width:20%;
-        border-radius: 50%;
-    }
-
-    .logoImg{
-        padding-top: 7%;
-        text-align: center ;
-    }
 
     .titles{
         padding-top: 10%;
         text-align: center;
+        font-family: 'ABeeZee', sans-serif;
 
+    }
+
+    .form{
+        margin-top: 15%;
     }
 
     .newPainting{
@@ -289,14 +274,12 @@ if(!isset($_POST['name'])){
     $description = getPOSTsafely($conn, "description");
 
     echo ' <div class="container form">
-        <div class="logoImg">
-            <img src="Resources/logo.jpg" alt="logo"/>
-            <form name="bookingForm" action="upload.php" method="post">
                         <div class="form-group message">
-                            <h1 id="name">New Painting added successfully</h1>
+                            <h1 class="titles">New Painting added successfully</h1>
                         </div>
-            </form>
-        </div>
+                        <div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> 100% completed...</div>
+</div>
     </div>';
 
     $sql = "INSERT INTO `artListings`(`id`, `name`, `art-piece`, `date of completion`, `width (mm)`, `height (mm)`, `price (£)`, `description`) 

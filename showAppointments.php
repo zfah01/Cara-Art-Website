@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
     <link class="img-responsive logo img-circle margin" rel="icon" href="Resources/logo.jpg">
     <style>
         html body{
             background: #D3D3D3;
         }
 
-        .titles{
+        #title{
             text-align: center;
+            font-family: 'ABeeZee', sans-serif;
             padding-top: 5%;
 
         }
@@ -43,7 +45,7 @@ include "./navigationBar.html";
         $result -> data_seek(0);
         if($result->num_rows > 0){
             echo"<div class='container py-5'>";
-            echo "<h2 class='titles'>Appointments</h2>";
+            echo "<h2 id='title'>Appointments</h2>";
             echo"<div class='col-lg-7 mx-auto bg-white rounded shadow'>";
             echo"<div class='table-responsive'>";
             echo"<table class='table table-striped'>\n";

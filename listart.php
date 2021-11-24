@@ -24,9 +24,6 @@
             box-shadow: 8px 8px 8px #e1e1ff;
             transform: scale(1.05);
             transition: transform .4s;
-        .card{
-            border: #d4af37;
-        }
         }
         .col-6 {
             padding-top: 9%;
@@ -34,6 +31,29 @@
         .row{
             padding-left: 2%;
             padding-right: 2%;
+        }
+
+        #pagination{
+            width: 340px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #submit{
+            position: relative;
+            background: #000;
+            border: 0;
+            padding: 14px 42px;
+            border-radius: 3px;
+            cursor: pointer;
+            overflow: hidden;
+            outline: none;
+            font-weight: 400;
+            font-size: 12px;
+            color: #fff;
+            letter-spacing: .2em;
+            box-shadow: 0 8px 32px;
+            transition: all .2s ease;
         }
 
 
@@ -67,12 +87,14 @@ include "./navigationBar.html";
     $returnTotalPages = $conn->query($getTotalPages);
     $totalRows = mysqli_fetch_array($returnTotalPages)[0];
     $totalPages = ceil($totalRows / $recordsPerPage);
+    $prev = $pageNum - 1;
+    $next = $pageNum + 1;
 
     $sql = "SELECT * FROM `artListings` LIMIT $offset, $recordsPerPage";
     $fetchData = $conn->query($sql);
 
     echo '<div class="container-fluid body-content">
-  <div class="row">';
+          <div class="row">';
     echo '<div class="row">';
 
     while($row = mysqli_fetch_array($fetchData)){
@@ -100,53 +122,24 @@ include "./navigationBar.html";
     $conn->close();
     ?>
 </div>
-<div id="pagination" style="width: 340px; margin-left: auto; margin-right: auto;">
-    <nav aria-label="Page navigation">
-        <ul class="pagination" class="pagination">
-
-            <li class="page-item"><a class="page-link" href="<?php if ($pageNum <= 1) {
-                    echo '#';
-                } else {
-                    echo "?pageNum =" . ($pageNum - 1);
-                } ?>">Previous</a></li>
-            <?php
-            if ($pageNum == 1) {
-                ?>
-
-                <li class="page-item disabled"><a class="page-link" href="<?php echo '#'; ?>">1</a></li>
-                <li class="page-item"><a class="page-link"
-                                         href="<?php echo "?pageNum=" . ($pageNum + 1); ?>"><?php echo $pageNum + 1 ?></a></li>
-                <li class="page-item"><a class="page-link"
-                                         href="<?php echo "?pageNum=" . ($pageNum + 2); ?>"><?php echo $pageNum + 2 ?></a></li>
-                <?php
-            } else if ($pageNum == $totalPages) {
-                ?>
-
-                <li class="page-item"><a class="page-link"
-                                         href="<?php echo "?pageNum=" . ($pageNum - 2); ?>"><?php echo $pageNum - 2 ?></a></li>
-                <li class="page-item"><a class="page-link"
-                                         href="<?php echo "?pageNum=" . ($pageNum - 1); ?>"><?php echo $pageNum - 1 ?></a></li>
-                <li class="page-item disabled"><a class="page-link"
-                                                  href="<?php echo "?pageNum=" . ($pageNum + 2); ?>"><?php echo $pageNum ?></a>
+<div id="pagination">
+    <nav aria-label="Page navigation mt-5">
+        <ul class="pagination justify-content-center">
+            <li class="page-item <?php if($pageNum <= 1){ echo 'disabled'; } ?>">
+                <a class="page-link"
+                   href="<?php if($pageNum <= 1){ echo '#'; } else { echo "?page=" . $prev; } ?>">Previous</a>
+            </li>
+            <?php for($i = 1; $i <= $totalPages; $i++ ): ?>
+                <li class="page-item <?php if($pageNum == $i) {echo 'active'; } ?>">
+                    <a class="page-link" href="<?php echo "?pageNum=" . $i; ?>"> <?php echo $i ?> </a>
                 </li>
-                <?php
-            } else {
-                ?>
-                <li class="page-item"><a class="page-link"
-                                         href="<?php echo "?pageNum=" . ($pageNum - 1); ?>"><?php echo $pageNum - 1 ?></a></li>
-                <li class="page-item disabled"><a class="page-link" href="<?php echo '#'; ?>"><?php echo $pageNum ?></a></li>
-                <li class="page-item"><a class="page-link"
-                                         href="<?php echo "?pageNum=" . ($pageNum + 1); ?>"><?php echo $pageNum + 1 ?></a></li>
+            <?php endfor; ?>
 
-                <?php
-            }
-            ?>
-            <li class="page-item"><a class="page-link" href="<?php if ($pageNum >= $totalPages) {
-                    echo '#';
-                } else {
-                    echo "?pageNum=" . ($pageNum + 1);
+            <li class="page-item" <?php if ($pageNum >= $totalPages) { echo 'disabled'; } ?>>
+                <a class="page-link" href="<?php if ($pageNum >= $totalPages) { echo '#';}
+                else {
+                    echo "?pageNum=" . $next;
                 } ?>">Next</a></li>
-
         </ul>
     </nav>
 </div>
